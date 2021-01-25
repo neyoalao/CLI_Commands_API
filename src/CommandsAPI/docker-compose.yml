@@ -1,0 +1,16 @@
+version: '3'
+services:
+    postgres-sql-server:
+        image: postgres
+        environment: 
+            POSTGRES_PASSWORD: pa55w0rrd
+        ports: 
+            - "5432:5432"
+    commnands-api:
+        build: .
+        environment: 
+            DBServer: "postgres-sql-server"
+        ports: 
+            - "8080:80"
+        depends_on: 
+            - postgres-sql-server
