@@ -4,6 +4,9 @@ namespace CommandsAPI.Dtos
 {
     public class CommandCreateDto
     {
+        
+        
+        
         [Required]
         [MaxLength(250)]
         public string HowTo {get; set;}

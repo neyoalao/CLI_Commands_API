@@ -1,16 +1,26 @@
-version: '3'
+version: "3"
 services:
-    postgres-sql-server:
-        image: postgres
-        environment: 
-            POSTGRES_PASSWORD: pa55w0rrd
-        ports: 
-            - "5432:5432"
-    commnands-api:
-        build: .
-        environment: 
-            DBServer: "postgres-sql-server"
-        ports: 
-            - "8080:80"
-        depends_on: 
-            - postgres-sql-server
+  postgres-sql-server:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: pa55w0rrd
+    ports:
+      - "5432:5432"
+    volumes:
+      - posgres-data:/var/lib/postgresql/data
+  commnands-api:
+    build: .
+    environment:
+      DBServer: "postgres-sql-server"
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres-sql-server
+volumes:
+  posgres-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ~/Documents/docker/posgres-data
+      # https://stackoverflow.com/questions/49950326/how-to-create-docker-volume-device-host-path

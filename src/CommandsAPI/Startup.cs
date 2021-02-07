@@ -77,11 +77,17 @@ namespace CommandsAPI
             }
             });
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // it has to be called here before other functions
+            app.UseCors(options =>
+                options.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
