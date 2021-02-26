@@ -22,5 +22,5 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: ~/Documents/docker/posgres-data
+      device: /Users/agileinventor/Documents/rwe_learning/docker/posgres-data
       # https://stackoverflow.com/questions/49950326/how-to-create-docker-volume-device-host-path
